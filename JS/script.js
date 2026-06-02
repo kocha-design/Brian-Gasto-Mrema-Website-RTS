@@ -1,165 +1,79 @@
-// ====================
-// 1. LOADER ANIMATION
-// ====================
 window.addEventListener('load', () => {
   const loader = document.getElementById('loaderWrapper');
   if (loader) {
-    setTimeout(() => {
-      loader.classList.add('loader-hidden');
-      setTimeout(() => {
-        loader.style.display = 'none';
-      }, 600);
-    }, 800);
+    setTimeout(() => { loader.classList.add('loader-hidden'); setTimeout(() => loader.style.display = 'none', 600); }, 800);
   }
 });
 
-// ====================
-// 2. STICKY NAV + ACTIVE LINKS + SMOOTH SCROLL
-// ====================
+// active nav + smooth scroll
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section, .hero');
-const navbar = document.getElementById('navbar');
-
 function updateActiveLink() {
   let current = '';
   const scrollPos = window.scrollY + 150;
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
-    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-      current = section.getAttribute('id');
-    }
+    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) current = section.getAttribute('id');
   });
   navLinks.forEach(link => {
     link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
+    if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
   });
 }
-
-// Smooth scrolling for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
-    const targetId = this.getAttribute('href').substring(1);
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-      // close mobile menu after click
-      const navMenu = document.getElementById('navLinks');
-      if (navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
+    const target = document.getElementById(this.getAttribute('href').substring(1));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('navLinks')?.classList.remove('active');
+    document.body.style.overflow = '';
   });
 });
-
 window.addEventListener('scroll', () => {
   updateActiveLink();
-  // Navbar background sticky effect
-  if (window.scrollY > 10) {
-    navbar.style.background = 'rgba(10, 25, 47, 0.98)';
-  } else {
-    navbar.style.background = 'rgba(10, 25, 47, 0.95)';
-  }
-  // back to top button
   const backBtn = document.getElementById('backToTop');
-  if (window.scrollY > 500) {
-    backBtn.classList.add('show');
-  } else {
-    backBtn.classList.remove('show');
-  }
+  if (window.scrollY > 500) backBtn.classList.add('show');
+  else backBtn.classList.remove('show');
+});
+document.getElementById('backToTop')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// hamburger
+document.getElementById('hamburger')?.addEventListener('click', () => {
+  const menu = document.getElementById('navLinks');
+  menu.classList.toggle('active');
+  document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
 });
 
-// Back to top functionality
-document.getElementById('backToTop').addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// ====================
-// 3. HAMBURGER MENU (Mobile)
-// ====================
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-});
-
-// ====================
-// 4. ANIMATED COUNTERS (Statistics)
-// ====================
+// counter animation
 const counters = document.querySelectorAll('.counter');
 let started = false;
-
 function startCounters() {
-  counters.forEach(counter => {
-    const updateCount = () => {
-      const target = parseInt(counter.getAttribute('data-target'));
-      const current = parseInt(counter.innerText);
-      const increment = target / 80;
-      if (current < target) {
-        counter.innerText = Math.ceil(current + increment);
-        setTimeout(updateCount, 20);
-      } else {
-        counter.innerText = target;
-      }
+  counters.forEach(c => {
+    const update = () => {
+      const target = +c.dataset.target, current = +c.innerText;
+      const inc = target / 70;
+      if (current < target) { c.innerText = Math.ceil(current + inc); setTimeout(update, 20); }
+      else c.innerText = target;
     };
-    updateCount();
+    update();
   });
 }
-
-// Trigger counters when stats section is visible
-const statsSection = document.querySelector('.stats');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !started) {
-      started = true;
-      startCounters();
-      observer.unobserve(entry.target);
-    }
-  });
+const statsObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !started) { started = true; startCounters(); statsObserver.unobserve(entries[0].target); }
 }, { threshold: 0.4 });
-if (statsSection) observer.observe(statsSection);
+if (document.querySelector('.stats')) statsObserver.observe(document.querySelector('.stats'));
 
-// ====================
-// 5. SCROLL REVEAL ANIMATION
-// ====================
+// scroll reveal
 const revealElements = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
 }, { threshold: 0.1 });
 revealElements.forEach(el => revealObserver.observe(el));
 
-// ====================
-// 6. CONTACT FORM SUBMIT (demo alert)
-// ====================
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Thank you! Your message has been received. We will contact you soon.');
-    contactForm.reset();
-  });
-}
-
-// ====================
-// 7. UPDATE FOOTER YEAR
-// ====================
+// contact form
+document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+  e.preventDefault(); alert('Thank you! Your message has been received. We will contact you soon.'); e.target.reset();
+});
 document.getElementById('currentYear').innerText = new Date().getFullYear();
-
-// ====================
-// 8. Ensure active link on page load
-// ====================
-setTimeout(() => {
-  updateActiveLink();
-}, 200);
+updateActiveLink();

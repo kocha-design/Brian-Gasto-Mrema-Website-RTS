@@ -3,36 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>RTS | Random Tech Solution - Innovative IT Solutions</title>
-  <!-- Google Fonts + Font Awesome (Icon Library) -->
+  <title>Random Tech Solution | Smart Technology, Real Solutions</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- Favicon (optional) - replace with your logo small version -->
+  <link rel="icon" type="IMAGES/png" href="IMAGES/LOGO.png">
 </head>
 <body>
 
-  <!-- LOADING ANIMATION (Preloader) -->
+  <!-- Loading Animation -->
   <div class="loader-wrapper" id="loaderWrapper">
     <div class="loader-spinner"></div>
-    <p>Loading future-ready solutions...</p>
+    <p>Loading smart solutions...</p>
   </div>
 
-  <!-- BACK TO TOP BUTTON -->
-  <button id="backToTop" class="back-to-top" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+  <button id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 
-  <!-- STICKY NAVIGATION BAR -->
+  <!-- Sticky Navbar with Logo Image -->
   <header class="navbar" id="navbar">
     <div class="container nav-container">
       <div class="logo">
-        <a href="#home">RTS<span>.</span></a>
-        <span class="logo-slogan">Random Tech Solution</span>
+        <!-- Logo image - make sure 'logo.png' exists in the root folder -->
+        <img src="IMAGES/LOGO.png" alt="Random Tech Solution Logo" class="logo-img">
+        <div class="logo-text">
+          <a href="#home">RTS<span>.</span></a>
+          <span class="logo-slogan">Smart Technology. Real Solutions.</span>
+        </div>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
       <nav class="nav-links" id="navLinks">
         <ul>
           <li><a href="#home" class="nav-link active">Home</a></li>
@@ -46,12 +45,12 @@
   </header>
 
   <main>
-    <!-- HERO SECTION with Animated Background -->
+    <!-- Hero Section with brand colors -->
     <section id="home" class="hero">
       <div class="hero-bg-animation"></div>
       <div class="container hero-content">
         <h1 class="hero-title">Random Tech Solution</h1>
-        <p class="hero-subtitle">Innovative Technology Solutions for Modern Businesses</p>
+        <p class="hero-subtitle">Smart Technology. Real Solutions.</p>
         <p class="hero-description">Empowering organizations through web development, systems development, networking solutions, cloud systems, IT support, and software consultancy.</p>
         <div class="hero-buttons">
           <a href="#services" class="btn btn-primary">Explore Services <i class="fas fa-arrow-right"></i></a>
@@ -60,7 +59,7 @@
       </div>
     </section>
 
-    <!-- ABOUT US SECTION -->
+    <!-- About Section -->
     <section id="about" class="section about">
       <div class="container">
         <div class="section-header reveal">
@@ -71,28 +70,16 @@
           <div class="about-text reveal">
             <p>Random Tech Solution (RTS) provides technology-driven solutions that help organizations improve efficiency, automation, connectivity, and digital transformation. With a team of expert engineers and consultants, we bridge the gap between complex technology and business success.</p>
             <div class="mission-vision">
-              <div class="mv-card">
-                <i class="fas fa-bullseye"></i>
-                <h3>Mission</h3>
-                <p>To deliver cutting-edge, scalable digital solutions that empower enterprises to thrive in a connected world.</p>
-              </div>
-              <div class="mv-card">
-                <i class="fas fa-eye"></i>
-                <h3>Vision</h3>
-                <p>To become the leading technology partner for next‑gen digital transformation across industries.</p>
-              </div>
-              <div class="mv-card">
-                <i class="fas fa-gem"></i>
-                <h3>Core Values</h3>
-                <p>Innovation · Integrity · Customer Centric · Excellence · Agility</p>
-              </div>
+              <div class="mv-card"><i class="fas fa-bullseye"></i><h3>Mission</h3><p>To deliver cutting-edge, scalable digital solutions that empower enterprises to thrive in a connected world.</p></div>
+              <div class="mv-card"><i class="fas fa-eye"></i><h3>Vision</h3><p>To become the leading technology partner for next‑gen digital transformation across industries.</p></div>
+              <div class="mv-card"><i class="fas fa-gem"></i><h3>Core Values</h3><p>Innovation · Integrity · Customer Centric · Excellence · Agility</p></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES SECTION (6 Professional Cards) -->
+    <!-- Services Section (6 Cards) -->
     <section id="services" class="section services">
       <div class="container">
         <div class="section-header reveal">
@@ -101,84 +88,20 @@
           <p>End-to-end technology solutions tailored for modern enterprises</p>
         </div>
         <div class="services-grid">
-          <!-- Service 1: Web Development -->
-          <div class="service-card reveal">
-            <div class="card-icon"><i class="fas fa-code"></i></div>
-            <h3>Web Development</h3>
-            <p>Modern, responsive, secure, and scalable websites tailored for businesses.</p>
-            <ul class="service-features">
-              <li>Corporate & Business Websites</li>
-              <li>Portfolio & Dynamic Web Apps</li>
-              <li>Custom Platforms & Maintenance</li>
-            </ul>
-          </div>
-          <!-- Service 2: Systems Development -->
-          <div class="service-card reveal">
-            <div class="card-icon"><i class="fas fa-database"></i></div>
-            <h3>Systems Development</h3>
-            <p>Enterprise systems that improve operational efficiency & automation.</p>
-            <ul class="service-features">
-              <li>Management & Queue Systems</li>
-              <li>Inventory & ERP Platforms</li>
-              <li>Business Automation Solutions</li>
-            </ul>
-          </div>
-          <!-- Service 3: Networking Solutions -->
-          <div class="service-card reveal">
-            <div class="card-icon"><i class="fas fa-network-wired"></i></div>
-            <h3>Networking Solutions</h3>
-            <p>Robust networking infrastructure & connectivity solutions.</p>
-            <ul class="service-features">
-              <li>Network Setup & Configuration</li>
-              <li>Structured Cabling & Office Connectivity</li>
-              <li>Internet Infrastructure Support</li>
-            </ul>
-          </div>
-          <!-- Service 4: IT Support Services -->
-          <div class="service-card reveal">
-            <div class="card-icon"><i class="fas fa-life-ring"></i></div>
-            <h3>IT Support Services</h3>
-            <p>Technical support for stable and efficient IT environments.</p>
-            <ul class="service-features">
-              <li>System Troubleshooting & Maintenance</li>
-              <li>User Support & Software Installation</li>
-              <li>Performance Optimization</li>
-            </ul>
-          </div>
-          <!-- Service 5: Cloud Systems -->
-          <div class="service-card reveal">
-            <div class="card-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <h3>Cloud Systems</h3>
-            <p>Cloud-based solutions enhancing collaboration & data access.</p>
-            <ul class="service-features">
-              <li>Internal Cloud & File Management</li>
-              <li>Data Storage & Backup/Recovery</li>
-              <li>Cloud Infrastructure Concepts</li>
-            </ul>
-          </div>
-          <!-- Service 6: Software Consultancy -->
-          <div class="service-card reveal">
-            <div class="card-icon"><i class="fas fa-chalkboard-user"></i></div>
-            <h3>Software Consultancy</h3>
-            <p>Strategic consultation to modernize digital operations.</p>
-            <ul class="service-features">
-              <li>Digital Transformation Strategy</li>
-              <li>System & IT Infrastructure Planning</li>
-              <li>Operational Technology Solutions</li>
-            </ul>
-          </div>
+          <div class="service-card reveal"><div class="card-icon"><i class="fas fa-code"></i></div><h3>Web Development</h3><p>Modern, responsive, secure, and scalable websites tailored for businesses.</p><ul class="service-features"><li>Corporate & Business Websites</li><li>Portfolio & Dynamic Web Apps</li><li>Custom Platforms & Maintenance</li></ul></div>
+          <div class="service-card reveal"><div class="card-icon"><i class="fas fa-database"></i></div><h3>Systems Development</h3><p>Enterprise systems that improve operational efficiency & automation.</p><ul class="service-features"><li>Management & Queue Systems</li><li>Inventory & ERP Platforms</li><li>Business Automation Solutions</li></ul></div>
+          <div class="service-card reveal"><div class="card-icon"><i class="fas fa-network-wired"></i></div><h3>Networking Solutions</h3><p>Robust networking infrastructure & connectivity solutions.</p><ul class="service-features"><li>Network Setup & Configuration</li><li>Structured Cabling & Office Connectivity</li><li>Internet Infrastructure Support</li></ul></div>
+          <div class="service-card reveal"><div class="card-icon"><i class="fas fa-life-ring"></i></div><h3>IT Support Services</h3><p>Technical support for stable and efficient IT environments.</p><ul class="service-features"><li>System Troubleshooting & Maintenance</li><li>User Support & Software Installation</li><li>Performance Optimization</li></ul></div>
+          <div class="service-card reveal"><div class="card-icon"><i class="fas fa-cloud-upload-alt"></i></div><h3>Cloud Systems</h3><p>Cloud-based solutions enhancing collaboration & data access.</p><ul class="service-features"><li>Internal Cloud & File Management</li><li>Data Storage & Backup/Recovery</li><li>Cloud Infrastructure Concepts</li></ul></div>
+          <div class="service-card reveal"><div class="card-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Software Consultancy</h3><p>Strategic consultation to modernize digital operations.</p><ul class="service-features"><li>Digital Transformation Strategy</li><li>System & IT Infrastructure Planning</li><li>Operational Technology Solutions</li></ul></div>
         </div>
       </div>
     </section>
 
-    <!-- WHY CHOOSE RTS SECTION (6 Feature Cards) -->
+    <!-- Why Choose RTS -->
     <section id="why-choose" class="section why-choose">
       <div class="container">
-        <div class="section-header reveal">
-          <h2>Why Choose RTS</h2>
-          <div class="underline"></div>
-          <p>We combine expertise, innovation, and commitment to drive your success</p>
-        </div>
+        <div class="section-header reveal"><h2>Why Choose RTS</h2><div class="underline"></div><p>We combine expertise, innovation, and commitment to drive your success</p></div>
         <div class="features-grid">
           <div class="feature-card reveal"><i class="fas fa-users"></i><h3>Experienced Technical Team</h3><p>Certified engineers with deep industry knowledge.</p></div>
           <div class="feature-card reveal"><i class="fas fa-lightbulb"></i><h3>Innovative Solutions</h3><p>Cutting-edge tools & forward-thinking strategies.</p></div>
@@ -190,121 +113,62 @@
       </div>
     </section>
 
-    <!-- STATISTICS SECTION (Animated Counters) -->
+    <!-- Statistics Counters -->
     <section class="section stats">
       <div class="container stats-container">
-        <div class="stat-item reveal">
-          <div class="stat-number"><span class="counter" data-target="5">5</span>+</div>
-          <p>Projects Completed</p>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-number"><span class="counter" data-target="8">2</span>+</div>
-          <p>Clients Served</p>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-number"><span class="counter" data-target="5">05</span>+</div>
-          <p>Technology Solutions</p>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-number"><span class="counter" data-target="78">89</span>%</div>
-          <p>Support Availability (Uptime)</p>
-        </div>
+        <div class="stat-item reveal"><div class="stat-number"><span class="counter" data-target="10">0</span>+</div><p>Projects Completed</p></div>
+        <div class="stat-item reveal"><div class="stat-number"><span class="counter" data-target="8">0</span>+</div><p>Clients Served</p></div>
+        <div class="stat-item reveal"><div class="stat-number"><span class="counter" data-target="3">0</span>+</div><p>Technology Solutions</p></div>
+        <div class="stat-item reveal"><div class="stat-number"><span class="counter" data-target="100">0</span>%</div><p>Support Availability</p></div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION + Google Maps Placeholder -->
+    <!-- Contact Section -->
     <section id="contact" class="section contact">
       <div class="container">
-        <div class="section-header reveal">
-          <h2>Contact Us</h2>
-          <div class="underline"></div>
-          <p>Let's discuss your next technology project</p>
-        </div>
+        <div class="section-header reveal"><h2>Contact Us</h2><div class="underline"></div><p>Let's discuss your next technology project</p></div>
         <div class="contact-grid">
-          <!-- Contact Form -->
           <div class="contact-form-container reveal">
             <form id="contactForm">
-              <div class="form-group">
-                <input type="text" id="name" placeholder="Full Name" required>
-              </div>
-              <div class="form-group">
-                <input type="email" id="email" placeholder="Email Address" required>
-              </div>
-              <div class="form-group">
-                <input type="text" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group">
-                <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
-              </div>
+              <div class="form-group"><input type="text" id="name" placeholder="Full Name" required></div>
+              <div class="form-group"><input type="email" id="email" placeholder="Email Address" required></div>
+              <div class="form-group"><input type="text" id="subject" placeholder="Subject" required></div>
+              <div class="form-group"><textarea id="message" rows="5" placeholder="Your message..." required></textarea></div>
               <button type="submit" class="btn btn-primary submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
             </form>
           </div>
-          <!-- Company Info & Maps Placeholder -->
           <div class="contact-info reveal">
-            <div class="info-block">
-              <i class="fas fa-phone-alt"></i>
-              <div><h4>Phone</h4><p>+255 613 950 508</p></div>
-            </div>
-            <div class="info-block">
-              <i class="fas fa-envelope"></i>
-              <div><h4>Email</h4><p>info@rts.com</p></div>
-            </div>
-            <div class="info-block">
-              <i class="fas fa-map-marker-alt"></i>
-              <div><h4>Location</h4><p>768 Dar es Salaam, Tanzania</p></div>
-            </div>
-            <!-- Google Maps placeholder -->
-            <div class="map-placeholder">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12685.32698226028!2d-122.034721!3d37.36827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5ff2a0c7c29%3A0x4d6cd4e8c63d877!2sSilicon%20Valley%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            <div class="info-block"><i class="fas fa-phone-alt"></i><div><h4>Phone</h4><p>+255 613 950 508</p></div></div>
+            <div class="info-block"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>info@rts.com</p></div></div>
+            <div class="info-block"><i class="fas fa-map-marker-alt"></i><div><h4>Location</h4><p>789 Dar es Salaam, Tanzania</p></div></div>
+            <div class="map-placeholder"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12685.32698226028!2d-122.034721!3d37.36827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5ff2a0c7c29%3A0x4d6cd4e8c63d877!2sSilicon%20Valley%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe></div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER SECTION -->
+  <!-- Footer with Logo Again -->
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-col">
-        <h3>Random Tech Solution</h3>
-        <p>Innovative technology solutions that transform businesses through digital excellence, secure systems, and future-ready infrastructure.</p>
+        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+          <img src="IMAGES/LOGO.png" alt="RTS Logo" style="height: 45px; width: auto;">
+          <h3 style="color:white;">RTS</h3>
+        </div>
+        <p>Smart Technology. Real Solutions. Innovative technology solutions that transform businesses through digital excellence.</p>
         <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Our Services</h4>
-        <ul>
-          <li>Web Development</li>
-          <li>Systems Development</li>
-          <li>Networking Solutions</li>
-          <li>Cloud Systems</li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact Info</h4>
-        <ul>
-          <li><i class="fas fa-phone-alt"></i> +255 613 950 508</li>
-          <li><i class="fas fa-envelope"></i> info@rts.com</li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Our Services</h4><ul><li>Web Development</li><li>Systems Development</li><li>Networking Solutions</li><li>Cloud Systems</li></ul></div>
+      <div class="footer-col"><h4>Contact Info</h4><ul><li><i class="fas fa-phone-alt"></i> +255 613 950 508</li><li><i class="fas fa-envelope"></i> info@rts.com</li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; <span id="currentYear"></span> Random Tech Solution (RTS). All rights reserved. | Future-ready innovation</p>
-    </div>
+    <div class="footer-bottom"><p>&copy; <span id="currentYear"></span> Random Tech Solution. All rights reserved. | Smart Technology. Real Solutions.</p></div>
   </footer>
 
   <script src="js/script.js"></script>
