@@ -1,79 +1,213 @@
-window.addEventListener('load', () => {
+// ==========================
+// 1. LOADER ANIMATION
+// ==========================
+(function initLoader() {
   const loader = document.getElementById('loaderWrapper');
-  if (loader) {
-    setTimeout(() => { loader.classList.add('loader-hidden'); setTimeout(() => loader.style.display = 'none', 600); }, 800);
-  }
-});
+  if (!loader) return;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loader.classList.add('loader-hidden');
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 600);
+    }, 800);
+  });
+})();
 
-// active nav + smooth scroll
+// ==========================
+// 2. STICKY NAV & ACTIVE LINK & BACK TO TOP
+// ==========================
+const navbar = document.getElementById('navbar');
+const backBtn = document.getElementById('backToTop');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section, .hero');
+
 function updateActiveLink() {
-  let current = '';
   const scrollPos = window.scrollY + 150;
+  let current = '';
   sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) current = section.getAttribute('id');
+    const id = section.getAttribute('id');
+    if (!id) return;
+    const top = section.offsetTop;
+    const bottom = top + section.clientHeight;
+    if (scrollPos >= top && scrollPos < bottom) current = id;
   });
   navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    const href = link.getAttribute('href');
+    link.classList.toggle('active', href === `#${current}`);
   });
 }
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.getElementById(this.getAttribute('href').substring(1));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
-    document.getElementById('navLinks')?.classList.remove('active');
-    document.body.style.overflow = '';
-  });
-});
+
+function handleNavbarStyle() {
+  if (!navbar) return;
+  const scrolled = window.scrollY > 10;
+  navbar.style.background = scrolled ? 'rgba(10, 25, 47, 0.98)' : 'rgba(10, 25, 47, 0.96)';
+}
+
+function handleBackToTop() {
+  if (!backBtn) return;
+  const show = window.scrollY > 500;
+  backBtn.classList.toggle('show', show);
+}
+
 window.addEventListener('scroll', () => {
   updateActiveLink();
-  const backBtn = document.getElementById('backToTop');
-  if (window.scrollY > 500) backBtn.classList.add('show');
-  else backBtn.classList.remove('show');
-});
-document.getElementById('backToTop')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-// hamburger
-document.getElementById('hamburger')?.addEventListener('click', () => {
-  const menu = document.getElementById('navLinks');
-  menu.classList.toggle('active');
-  document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+  handleNavbarStyle();
+  handleBackToTop();
 });
 
-// counter animation
+if (backBtn) {
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// ==========================
+// 3. SMOOTH SCROLL (with mobile menu close)
+// ==========================
+const navMenu = document.getElementById('navLinks');
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
+    e.preventDefault();
+    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // close mobile menu if open
+    if (navMenu && navMenu.classList.contains('active')) {
+      navMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+// ==========================
+// 4. HAMBURGER MENU
+// ==========================
+const hamburger = document.getElementById('hamburger');
+if (hamburger && navMenu) {
+  hamburger.addEventListener('click', () => {
+    const isActive = navMenu.classList.toggle('active');
+    document.body.style.overflow = isActive ? 'hidden' : '';
+  });
+}
+
+// ==========================
+// 5. ANIMATED COUNTERS (with IntersectionObserver)
+// ==========================
 const counters = document.querySelectorAll('.counter');
-let started = false;
-function startCounters() {
-  counters.forEach(c => {
+let countersStarted = false;
+
+function animateCounters() {
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target'), 10);
+    let current = 0;
     const update = () => {
-      const target = +c.dataset.target, current = +c.innerText;
-      const inc = target / 70;
-      if (current < target) { c.innerText = Math.ceil(current + inc); setTimeout(update, 20); }
-      else c.innerText = target;
+      const step = Math.ceil(target / 70);
+      current += step;
+      if (current < target) {
+        counter.innerText = current;
+        requestAnimationFrame(update);
+      } else {
+        counter.innerText = target;
+      }
     };
     update();
   });
 }
-const statsObserver = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting && !started) { started = true; startCounters(); statsObserver.unobserve(entries[0].target); }
-}, { threshold: 0.4 });
-if (document.querySelector('.stats')) statsObserver.observe(document.querySelector('.stats'));
 
-// scroll reveal
+const statsSection = document.querySelector('.stats');
+if (statsSection && counters.length) {
+  const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !countersStarted) {
+      countersStarted = true;
+      animateCounters();
+      statsObserver.unobserve(statsSection);
+    }
+  }, { threshold: 0.4 });
+  statsObserver.observe(statsSection);
+}
+
+// ==========================
+// 6. SCROLL REVEAL
+// ==========================
 const revealElements = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-}, { threshold: 0.1 });
-revealElements.forEach(el => revealObserver.observe(el));
+if (revealElements.length) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.1 });
+  revealElements.forEach(el => revealObserver.observe(el));
+}
 
-// contact form
-document.getElementById('contactForm')?.addEventListener('submit', (e) => {
-  e.preventDefault(); alert('Thank you! Your message has been received. We will contact you soon.'); e.target.reset();
-});
-document.getElementById('currentYear').innerText = new Date().getFullYear();
-updateActiveLink();
+// ==========================
+// 7. CONTACT FORM SUBMIT
+// ==========================
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Thank you! Your message has been received. We will contact you soon.');
+    contactForm.reset();
+  });
+}
+
+// ==========================
+// 8. FOOTER YEAR
+// ==========================
+const yearSpan = document.getElementById('currentYear');
+if (yearSpan) yearSpan.innerText = new Date().getFullYear();
+
+// ==========================
+// 9. FAQ ACCORDION (clean & efficient)
+// ==========================
+const faqQuestions = document.querySelectorAll('.faq-question');
+if (faqQuestions.length) {
+  function closeAllFaqItems(exceptItem = null) {
+    document.querySelectorAll('.faq-item').forEach(item => {
+      if (exceptItem && item === exceptItem) return;
+      if (item.classList.contains('open')) {
+        item.classList.remove('open');
+        const ans = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-question i');
+        if (ans) ans.style.maxHeight = null;
+        if (icon) {
+          icon.classList.remove('fa-minus');
+          icon.classList.add('fa-plus');
+        }
+      }
+    });
+  }
+
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const faqItem = question.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = question.querySelector('i');
+      const isOpen = faqItem.classList.contains('open');
+
+      if (!isOpen) closeAllFaqItems(faqItem);
+
+      faqItem.classList.toggle('open');
+      if (answer) {
+        if (!isOpen) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          answer.style.maxHeight = null;
+        }
+      }
+      if (icon) {
+        icon.classList.toggle('fa-minus', !isOpen);
+        icon.classList.toggle('fa-plus', isOpen);
+      }
+    });
+  });
+}
+
+// ==========================
+// 10. INITIAL ACTIVE LINK
+// ==========================
+setTimeout(() => {
+  updateActiveLink();
+}, 100);
